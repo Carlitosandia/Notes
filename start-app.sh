@@ -31,7 +31,6 @@ if [ -n "$DATABASE_URL" ]; then
 else
   echo -e "${GREEN}DATABASE_URL not set. Please check your .env file.${NC}"
 fi
-npx prisma migrate dev
 
 cd ..
 
