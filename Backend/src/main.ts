@@ -4,20 +4,17 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalPipes(new ValidationPipe());
-  const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') ?? [];
+
+  // Configuración de CORS para permitir cualquier origen
   app.enableCors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error(`Origen no permitido: ${origin}`));
-      }
-    },
+    origin: true, // Permite todos los orígenes
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
+    credentials: true, // Habilita el uso de cookies y credenciales
   });
-  await app.listen(process.env.PORT ?? 8080);
+
+  await app.listen(8080);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

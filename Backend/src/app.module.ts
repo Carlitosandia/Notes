@@ -15,11 +15,11 @@ import { NotesCategories } from './notes/entities/notes-categories.entity';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
     type: 'postgres',
-    host: process.env.DB_HOST ,
-    port: +process.env.DB_PORT,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
+    host: 'db-instance-notes.cfqya048en2z.us-east-1.rds.amazonaws.com' ,
+    port: 5432,
+    username: 'postgres',
+    password: 'CaJaRe2018',
+    database: 'Task_Manager',
     entities: [User, Note, Category, NotesCategories],
     synchronize: false,
   }), UsersModule, NotesModule, CategoriesModule]
